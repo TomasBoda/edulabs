@@ -1,0 +1,39 @@
+#subject {
+    
+}
+
+#subject .body-panel {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    flex: 1;
+
+    margin-top: 20px;
+}
+
+#subject .body-panel .title-small {
+    margin-bottom: 20px;
+}
+
+#subject .body-panel .panel-1 {
+    flex: 1;
+    height: 100%;
+
+    margin-right: 20px;
+}
+
+#subject .body-panel .grade-panel {
+    width: 400px;
+    padding-bottom: 10px;
+}
+
+#subject .body-panel .grade-panel .grades {
+    width: 100%;
+    height: 300px;
+    
+    overflow-y: scroll;
+}

@@ -1,0 +1,99 @@
+.edit-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    z-index: 999;
+}
+
+.edit {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 450px;
+
+    padding: 30px;
+
+    border-radius: 10px;;
+
+    background-color: white;
+}
+
+.edit .title {
+    color: #383838;
+    font-size: 25px;
+    font-weight: 700;
+
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.edit .title ion-icon {
+    width: 20px;
+    height: 20px;
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: all 150ms;
+}
+
+.edit .title ion-icon:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.edit .input {
+    width: 390px;
+    margin-bottom: 10px;
+}
+
+.edit .choice {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 10px;
+}
+
+.edit .choice .item {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 400;
+    
+    width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px;
+    margin-right: 10px;
+
+    border-radius: 5px;;
+
+    cursor: pointer;
+
+    transition: all 150ms;
+
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.edit .choice .item:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}

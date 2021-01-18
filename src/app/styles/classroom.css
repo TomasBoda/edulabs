@@ -1,0 +1,77 @@
+#classroom .body-panel {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 20px;
+}
+
+#classroom .body-panel .student {
+    display: grid;
+    grid-template-columns: auto 200px 1fr auto auto;
+    align-items: center;
+
+    padding: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+
+    background-color: white;
+}
+
+#classroom .body-panel .student .image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+
+    margin-right: 20px;
+}
+
+#classroom .body-panel .student .name {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 700;
+
+    margin-right: 20px;
+}
+
+#classroom .body-panel .student .grades {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    overflow: auto;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    padding: 0px;
+    margin: 0px;
+
+    height: 100%;
+}
+
+#classroom .body-panel .student .grades .grade {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 700;
+
+    padding: 0px 5px;
+
+    border: none;
+}
+
+#classroom .body-panel .student .average {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 700;
+
+    margin-right: 20px;
+    margin-left: 50px;
+}
+
+#classroom .body-panel .student .button {
+    
+}

@@ -1,0 +1,27 @@
+#dashboard {
+    
+}
+
+#dashboard .body-panel {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+
+    margin-top: 20px;
+}
+
+#dashboard .body-panel .average {
+    width: 370px;
+
+    margin-right: 20px;
+}
+
+#dashboard .body-panel .homework {
+    flex: 1;
+}
+
+#dashboard .body-panel .panel .title-small {
+    
+}

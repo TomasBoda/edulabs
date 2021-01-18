@@ -1,0 +1,12 @@
+.top-heading .title-large {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-heading .title-large .date {
+    color: rgb(170, 170, 170);
+    font-size: 14px;
+    font-weight: 700;
+}

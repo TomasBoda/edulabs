@@ -1,0 +1,62 @@
+#login {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#login .icon-panel {
+    flex: 1.7;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F5F5FB;
+}
+
+#login .icon-panel .icon {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+#login .login-panel {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 50px;
+}
+
+#login .login-panel .title {
+    color: #383838;
+    font-size: 32px;
+    font-weight: 700;
+
+    margin-bottom: 20px;
+}
+
+#login .login-panel .text {
+    color: #383838;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+
+    opacity: 0.5;
+
+    margin-bottom: 30px;
+}
+
+#login .login-panel .input {
+    margin-bottom: 12px;
+}
+
+#login .login-panel .button {
+    
+}

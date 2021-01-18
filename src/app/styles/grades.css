@@ -1,0 +1,92 @@
+#grades {
+
+}
+
+#grades .body-panel {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 20px;
+}
+
+#grades .body-panel .panel .title-small {
+    margin-bottom: 20px;
+}
+
+#grades .body-panel .panel {
+    flex: 1;
+
+    max-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 10px;
+}
+
+#grades .body-panel .panel .grades {
+    flex: 1;
+
+    overflow-y: auto;
+}
+
+.grade {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 15px 0px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.grade .description {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 400;
+
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.grade .bar {
+    width: 100px;
+    height: 6px;
+
+    border-radius: 1000px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-left: 20px;
+
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.grade .bar .filled {
+    height: 100%;
+
+    border-radius: 1000px;
+
+    background-color: #5E81F4;
+}
+
+.grade .value {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 700;
+
+    width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

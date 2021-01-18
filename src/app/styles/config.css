@@ -1,0 +1,153 @@
+/*
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,600;0,700;0,900;1,400&display=swap");
+*/
+
+* {
+    margin: 0px;
+    padding: 0px;
+
+    box-sizing: border-box;
+
+    /*font-family: "Nunito", sans-serif;*/
+    font-family: Arial, Helvetica, sans-serif
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    
+    padding: 50px;
+
+    background-color: #F5F5FB;
+}
+
+.panel {
+    padding: 20px;
+
+    border-radius: 10px;
+
+    background-color: white;
+}
+
+.without-bottom-padding {
+    padding-bottom: 0px;
+}
+
+.title-large {
+    color: #383838;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.title-small {
+    color: #383838;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.text-small {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.message {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.input {
+    width: 100%;
+    
+    color: #383838;
+    font-size: 16px;
+    font-weight: 300;
+
+    padding: 10px;
+
+    border: 1px solid rgb(230, 230, 230);
+    outline: none;
+}
+
+.button {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+
+    padding: 10px 30px;
+
+    background-color: #FF6A77;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    transition: all 150ms;
+}
+
+.button:hover {
+    background-color: #fa5b68;
+}
+
+.button-disabled {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+
+    padding: 10px 30px;
+
+    background-color: rgba(0, 0, 0, 0.15);
+
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    transition: all 150ms;
+}
+
+.button-disabled:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.loading-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading {
+    border: 5px solid transparent;
+    border-top: 5px solid #fa5b68;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    animation: spin 800ms linear infinite;
+  }
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
