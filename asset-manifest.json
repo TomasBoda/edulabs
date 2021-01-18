@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/edulabs/static/css/main.f7746fa9.chunk.css",
+    "main.js": "/edulabs/static/js/main.9b3333ee.chunk.js",
+    "main.js.map": "/edulabs/static/js/main.9b3333ee.chunk.js.map",
+    "runtime-main.js": "/edulabs/static/js/runtime-main.fb01219f.js",
+    "runtime-main.js.map": "/edulabs/static/js/runtime-main.fb01219f.js.map",
+    "static/js/2.16b4b6f0.chunk.js": "/edulabs/static/js/2.16b4b6f0.chunk.js",
+    "static/js/2.16b4b6f0.chunk.js.map": "/edulabs/static/js/2.16b4b6f0.chunk.js.map",
+    "index.html": "/edulabs/index.html",
+    "static/css/main.f7746fa9.chunk.css.map": "/edulabs/static/css/main.f7746fa9.chunk.css.map",
+    "static/js/2.16b4b6f0.chunk.js.LICENSE.txt": "/edulabs/static/js/2.16b4b6f0.chunk.js.LICENSE.txt",
+    "static/media/add-icon.05f97dea.svg": "/edulabs/static/media/add-icon.05f97dea.svg",
+    "static/media/class-icon.a3e9b4d2.svg": "/edulabs/static/media/class-icon.a3e9b4d2.svg",
+    "static/media/classroom-icon.39a5b2ea.svg": "/edulabs/static/media/classroom-icon.39a5b2ea.svg",
+    "static/media/dashboard-icon.1634b76b.svg": "/edulabs/static/media/dashboard-icon.1634b76b.svg",
+    "static/media/login-icon.2789a2c7.svg": "/edulabs/static/media/login-icon.2789a2c7.svg",
+    "static/media/profile-icon.a8d98262.svg": "/edulabs/static/media/profile-icon.a8d98262.svg",
+    "static/media/students-icon.3eecbeac.svg": "/edulabs/static/media/students-icon.3eecbeac.svg",
+    "static/media/subject-icon.7b85a9ab.svg": "/edulabs/static/media/subject-icon.7b85a9ab.svg",
+    "static/media/subjects-icon.14ca7e49.svg": "/edulabs/static/media/subjects-icon.14ca7e49.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fb01219f.js",
+    "static/js/2.16b4b6f0.chunk.js",
+    "static/css/main.f7746fa9.chunk.css",
+    "static/js/main.9b3333ee.chunk.js"
+  ]
+}
