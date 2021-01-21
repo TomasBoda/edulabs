@@ -31,6 +31,8 @@ class Classrooms extends React.Component {
     }
 
     async loadData() {
+        this.setState({ loading: true });
+
         const token = getStorageItem("token");
         const subjectId = this.props.match.params.id;
 
@@ -47,7 +49,10 @@ class Classrooms extends React.Component {
 
             console.log(fetchedClassrooms);
 
-            this.setState({ classrooms: fetchedClassrooms });
+            this.setState({
+                classrooms: fetchedClassrooms,
+                loading: false
+            });
         }
     }
 
@@ -78,15 +83,18 @@ class Classrooms extends React.Component {
                     image={Icon}
                 />
 
-                <div className="body-panel">
-                    {this.state.classrooms.map((classroom) => (
-                        <Box
-                            item={classroom}
-                            onClick={() => this.props.history.push("/subjects/" + this.state.subject.id + "/classrooms/" + classroom.id)}
-                            icon={ClassIcon}
-                        />
-                    ))}
-                </div>
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
+                        {this.state.classrooms.map((classroom) => (
+                            <Box
+                                withAnimation
+                                item={classroom}
+                                onClick={() => this.props.history.push("/subjects/" + this.state.subject.id + "/classrooms/" + classroom.id)}
+                                icon={ClassIcon}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         )
     }

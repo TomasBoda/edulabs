@@ -25,7 +25,9 @@ class Classroom extends React.Component {
         subject: {},
         students: [],
 
-        currentUser: ""
+        currentUser: "",
+
+        loading: true
     }
 
     constructor() {
@@ -44,6 +46,8 @@ class Classroom extends React.Component {
     }
 
     async loadStudents() {
+        this.setState({ loading: true });
+
         const token = getStorageItem("token");
         const classroomId = this.props.match.params.classroomId;
         const subjectId = this.props.match.params.id;
@@ -79,7 +83,10 @@ class Classroom extends React.Component {
                 });
             }
 
-            this.setState({ students: students });
+            this.setState({
+                students: students,
+                loading: false
+            });
         }
     }
 
@@ -127,29 +134,36 @@ class Classroom extends React.Component {
                         type={this.state.type}
                         userId={this.state.currentUser}
                         subjectId={this.props.match.params.id}
-                        close={() => this.setState({ edit: false }, () => this.loadData())}
+                        close={() => this.setState({ edit: false })}
+                        finish={() => this.setState({ edit: false }, () => this.loadData())}
                     />
                 ) : null}
 
-                <div className="body-panel">
-                    {this.state.students.map((student) => {
-                        return <div className="student">
-                            <img className="image" src={ProfileIcon} />
-                            <div className="name">{student.firstname + " " + student.lastname}</div>
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
+                        {this.state.students.map((student) => {
+                            return <div className="student">
+                                <div className="info-panel">
+                                    <img className="image" src={ProfileIcon} />
+                                    <div className="name">{student.firstname + " " + student.lastname}</div>
+                                </div>
 
-                            <div className="grades">
-                                {student.grades.length > 0 ? (
-                                    student.grades.map((grade) => (
-                                        <div className="grade">{grade.value.toFixed(1)}%</div>
-                                    ))
-                                ) : <div className="message" style={{ display: "flex", alignItems: "center" }}>No grades</div>}
+                                <div className="grades">
+                                    {student.grades.length > 0 ? (
+                                        student.grades.map((grade) => (
+                                            <div className="grade">{grade.value.toFixed(1) + "%"}</div>
+                                        ))
+                                        ) : <div className="message" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>No grades</div>}
+                                </div>
+
+                                <div className="add-panel">
+                                    <div className="average" style={student.average ? {} : { margin: 0 }}>{student.average ? student.average.toFixed(1) + "%" : null}</div>
+                                    <div className="button" onClick={() => this.setState({ currentUser: student.id }, () => this.setState({ edit: true }))}>Add grade</div>
+                                </div>
                             </div>
-
-                            <div className="average">{student.average ? student.average.toFixed(1) + "%" : null}</div>
-                            <div className="button" onClick={() => this.setState({ currentUser: student.id }, () => this.setState({ edit: true }))}>Add grade</div>
-                        </div>
-                    })}
-                </div>
+                        })}
+                    </div>
+                )}
             </div>
         )
     }

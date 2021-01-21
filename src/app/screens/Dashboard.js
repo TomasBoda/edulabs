@@ -63,11 +63,11 @@ class Dashboard extends React.Component {
                 />
 
                 <div className="body-panel">
-                    <div className="average panel">
+                    <div className="average panel animate__animated animate__fadeInUp">
                         <div className="title-small">Results</div>
                     </div>
 
-                    <div className="homework panel">
+                    <div className="homework panel animate__animated animate__fadeInUp animate__delay-1s">
                         <div className="title-small">Homework</div>
                     </div>
                 </div>

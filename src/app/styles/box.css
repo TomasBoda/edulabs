@@ -5,6 +5,8 @@
 
     text-decoration: none;
 
+    position: relative;
+
     padding: 20px;
 
     border-radius: 10px;
@@ -14,6 +16,38 @@
     transition: all 200ms;
 
     cursor: pointer;
+}
+
+.box:hover ion-icon {
+    opacity: 1;
+}
+
+.box ion-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    width: 20px;
+    height: 20px;
+
+    padding: 3px;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transition: all 150ms;
+}
+
+.box ion-icon:hover {
+    color: white;
+    background-color: #FF6A77;
+}
+
+@media (max-width: 1000px) {
+    .box ion-icon {
+        opacity: 1;
+    }
 }
 
 .box:hover .image {
@@ -28,6 +62,14 @@
     margin-bottom: 30px;
 
     transition: all 250ms;
+}
+
+@media (max-width: 700px) {
+    .box .image {
+        height: 100px;
+
+        margin-bottom: 20px;
+    }
 }
 
 .box .name {

@@ -15,6 +15,7 @@
 
 .popup .panel {
     max-width: 500px;
+    width: auto;
     height: auto;
 
     display: flex;
@@ -22,6 +23,7 @@
     align-items: center;
 
     padding: 20px;
+    margin: 20px;
 
     border-radius: 10px;
 
@@ -32,6 +34,7 @@
     color: #383838;
     font-size: 25px;
     font-weight: 700;
+    text-align: center;
 
     margin-bottom: 30px;
 }

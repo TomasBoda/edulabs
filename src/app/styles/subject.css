@@ -15,11 +15,19 @@
     margin-top: 20px;
 }
 
+@media (max-width: 1000px) {
+    #subject .body-panel {
+        flex-direction: column-reverse;
+
+        height: auto;
+    }
+}
+
 #subject .body-panel .title-small {
     margin-bottom: 20px;
 }
 
-#subject .body-panel .panel-1 {
+#subject .body-panel .overview-panel {
     flex: 1;
     height: 100%;
 
@@ -31,9 +39,85 @@
     padding-bottom: 10px;
 }
 
+@media (max-width: 1000px) {
+    #subject .body-panel .panel {
+        width: 100%;
+    }
+
+    #subject .body-panel .overview-panel {
+        height: 300px;
+    }
+    
+    #subject .body-panel .grade-panel {
+        height: auto;
+        max-height: 300px;
+
+        margin-bottom: 20px;
+    }
+}
+
 #subject .body-panel .grade-panel .grades {
     width: 100%;
     height: 300px;
     
     overflow-y: scroll;
+}
+
+#subject .body-panel .grade-panel .grades .grade {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 15px 0px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#subject .body-panel .grade-panel .grades .grade .description {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 400;
+
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+#subject .body-panel .grade-panel .grades .grade .bar {
+    width: 100px;
+    height: 6px;
+
+    border-radius: 1000px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-left: 20px;
+
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#subject .body-panel .grade-panel .grades .grade .bar .filled {
+    height: 100%;
+
+    border-radius: 1000px;
+
+    background-color: #5E81F4;
+}
+
+#subject .body-panel .grade-panel .grades .grade .value {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 700;
+
+    width: 140px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }

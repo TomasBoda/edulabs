@@ -12,6 +12,14 @@
     margin-top: 20px;
 }
 
+@media (max-width: 1000px) {
+    #dashboard .body-panel {
+        flex-direction: column;
+
+        height: auto;
+    }
+}
+
 #dashboard .body-panel .average {
     width: 370px;
 
@@ -20,6 +28,22 @@
 
 #dashboard .body-panel .homework {
     flex: 1;
+}
+
+@media (max-width: 1000px) {
+    #dashboard .body-panel .panel {
+        width: 100%;
+    }
+
+    #dashboard .body-panel .average {
+        height: 300px;
+
+        margin-bottom: 20px;
+    }
+    
+    #dashboard .body-panel .homework {
+        height: 400px;
+    }
 }
 
 #dashboard .body-panel .panel .title-small {

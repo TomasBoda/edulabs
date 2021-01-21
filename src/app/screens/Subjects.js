@@ -27,7 +27,6 @@ class Subjects extends React.Component {
         super();
 
         this.loadData = this.loadData.bind(this);
-
         this.isTeacher = this.isTeacher.bind(this);
     }
 
@@ -64,19 +63,13 @@ class Subjects extends React.Component {
     }
 
     async componentDidMount() {
-        if (isLogged()) {
-            this.loadData();
-        } else {
-            this.props.history.push("/");
-        }
+        this.loadData();
 
         const teacher = await this.isTeacher();
         this.setState({ isTeacher: teacher });
     }
 
     render() {
-        const user = this.state.user;
-
         return(
             <div className="screen" id="subjects">
                 <Heading title="Subjects" />
@@ -87,14 +80,18 @@ class Subjects extends React.Component {
                     image={Icon}
                 />
 
-                <div className="body-panel">
-                    {this.state.subjects.map((subject) => (
-                        <Box
-                            item={subject}
-                            onClick={() => this.state.isTeacher ? this.props.history.push("/subjects/" + subject.id + "/classrooms") : this.props.history.push("/subjects/" + subject.id)}
-                        />
-                    ))}
-                </div>
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
+                        {this.state.subjects.map((subject, index) => (
+                            <Box
+                                //delay={index * 150}
+                                withAnimation
+                                item={subject}
+                                onClick={() => this.state.isTeacher ? this.props.history.push("/subjects/" + subject.id + "/classrooms") : this.props.history.push("/subjects/" + subject.id)}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         )
     }

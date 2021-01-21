@@ -9,6 +9,7 @@ import Panel from "../../components/Panel";
 import Heading from "../../components/Heading";
 import Box from "../../components/Box";
 import Edit from "../../components/Edit";
+import Option from "../../components/Option";
 
 import "../../styles/admin.css";
 
@@ -24,6 +25,10 @@ class AdminTeachers extends React.Component {
 
         teachers: [],
 
+        deletedUser: "",
+        option: false,
+        optionLoading: false,
+
         loading: true
     }
 
@@ -31,6 +36,8 @@ class AdminTeachers extends React.Component {
         super();
 
         this.loadData = this.loadData.bind(this);
+        this.showOption = this.showOption.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     async loadData() {
@@ -53,6 +60,26 @@ class AdminTeachers extends React.Component {
         }
     }
 
+    showOption(event, id) {
+        event.stopPropagation();
+
+        this.setState({
+            deletedUser: id,
+            option: true
+        });
+    }
+
+    async deleteUser(id) {
+        this.setState({ optionLoading: true });
+
+        const token = getStorageItem("token");
+        const call = await Api.deleteUser(id, token);
+
+        if (call.message === "User deleted successfully") {
+            this.setState({ option: false }, () => this.loadData());
+        }
+    }
+
     componentDidMount() {
         this.loadData();
     }
@@ -60,7 +87,7 @@ class AdminTeachers extends React.Component {
     render() {
         return(
             <div className="screen" id="admin">
-                <Heading title="Teachers" />
+                <Heading title="Teachers" withArrow />
 
                 <Panel
                     title="Administrate your teachers"
@@ -72,25 +99,40 @@ class AdminTeachers extends React.Component {
                     <Edit
                         type={this.state.type}
                         role="teacher"
-                        close={() => this.setState({ edit: false }, () => this.loadData())}
+                        close={() => this.setState({ edit: false })}
+                        finish={() => this.setState({ edit: false }, () => this.loadData())}
                     />
                 ) : null}
 
-                <div className="body-panel">
-                    <Box
-                        item={{ name: "Add teacher" }}
-                        icon={AddIcon}
-                        onClick={() => this.setState({ edit: true })}
-                    />
-
-                    {this.state.teachers.map((teacher) => (
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
                         <Box
-                            item={{ name: teacher.firstname + " " + teacher.lastname }}
-                            onClick={() => this.props.history.push("/admin/users/" + teacher.id)}
-                            icon={ProfileIcon}
+                            item={{ name: "Add teacher" }}
+                            icon={AddIcon}
+                            onClick={() => this.setState({ edit: true })}
                         />
-                    ))}
-                </div>
+
+                        {this.state.teachers.map((teacher, index) => (
+                            <Box
+                                withAnimation
+                                withRemove
+                                onRemoveClick={(event) => this.showOption(event, teacher.id)}
+                                item={{ name: teacher.firstname + " " + teacher.lastname }}
+                                onClick={() => this.props.history.push("/admin/users/" + teacher.id)}
+                                icon={ProfileIcon}
+                            />
+                        ))}
+                    </div>
+                )}
+
+                {this.state.option ? (
+                    <Option
+                        title="Delete teacher?"
+                        loading={this.state.optionLoading}
+                        onClick={() => this.deleteUser(this.state.deletedUser)}
+                        close={() => this.setState({ option: false })}
+                    />
+                ) : null}
             </div>
         )
     }

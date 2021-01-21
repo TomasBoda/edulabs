@@ -2,8 +2,18 @@
     width: 100vw;
     height: 100vh;
 
+    padding: 0px;
+
     display: flex;
     flex-direction: row;
+}
+
+@media (max-width: 900px) {
+    #login {
+        height: auto;
+
+        flex-direction: column-reverse;
+    }
 }
 
 #login .icon-panel {
@@ -23,6 +33,18 @@
     object-fit: contain;
 }
 
+@media (max-width: 900px) {
+    #login .icon-panel {
+        background-color: white;
+
+        padding-bottom: 30px;
+    }
+    
+    #login .icon-panel .icon {
+        width: 80%;
+    }
+}
+
 #login .login-panel {
     flex: 1;
 
@@ -32,6 +54,8 @@
     align-items: flex-start;
 
     padding: 50px;
+
+    background-color: white;
 }
 
 #login .login-panel .title {
@@ -59,4 +83,30 @@
 
 #login .login-panel .button {
     
+}
+
+@media (max-width: 900px) {
+    #login .login-panel {
+        align-items: center;
+
+        padding: 50px 30px;
+    }
+    
+    #login .login-panel .title {
+        text-align: center;
+    }
+    
+    #login .login-panel .text {
+        text-align: center;
+    }
+    
+    #login .login-panel .input {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    #login .login-panel .button {
+        width: 100%;
+        max-width: 400px;
+    }
 }

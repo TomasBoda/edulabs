@@ -232,6 +232,30 @@ export default class Api extends React.Component {
 
     // ADMIN API CALLS
 
+    static async updateUserData(id, data, token) {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("auth-token", token);
+
+        const body = JSON.stringify(data);
+            
+        var requestOptions = {
+            method: "POST",
+            headers: headers,
+            body: body,
+            redirect: "follow"
+        };
+        
+        return fetch(API_URL + "/api/admin/users/update/" + id, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                return result
+            })
+            .catch(error => {
+                return error
+            });
+    }
+
     static async getAdminUser(id, token) {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
@@ -625,6 +649,29 @@ export default class Api extends React.Component {
         };
         
         return fetch(API_URL + "/api/grades/" + subjectId, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                return result
+            })
+            .catch(error => {
+                return error
+            });
+    }
+
+    // ADMIN DELETE API CALLS
+
+    static async deleteUser(userId, token) {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("auth-token", token);
+            
+        var requestOptions = {
+            method: "POST",
+            headers: headers,
+            redirect: "follow"
+        };
+        
+        return fetch(API_URL + "/api/admin/users/delete/" + userId, requestOptions)
             .then(response => response.json())
             .then(result => {
                 return result

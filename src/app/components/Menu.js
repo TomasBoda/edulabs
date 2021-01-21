@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation, useHistory, withRouter } from "react-router-dom";
 
 import { setStorageItem, getStorageItem, removeStorageItem, logout } from "../config/Config";
+import { hideMenu } from "./Header";
 
 import Api from "../config/Api";
 
@@ -58,14 +59,14 @@ class Menu extends React.Component {
                 <div className="logo">EduLabs</div>
 
                 <div className="navigation">
-                    <Link className="item" to="/dashboard">
+                    <Link className="item" to="/dashboard" onClick={() => window.innerWidth < 1000 ? hideMenu() : null}>
                         <ion-icon name="school-outline" style={this.isOpened("dashboard") ? { color: "#5E81F4" } : null}></ion-icon>
                         <div className="title" style={this.isOpened("dashboard") ? { color: "#383838" } : null}>Dashboard</div>
                         <div style={{ flex: 1 }} />
                         <div className="selector" style={this.isOpened("dashboard") ? { opacity: 1 } : { opacity: 0 }} />
                     </Link>
 
-                    <Link className="item" to="/subjects">
+                    <Link className="item" to="/subjects" onClick={() => window.innerWidth < 1000 ? hideMenu() : null}>
                         <ion-icon name="albums-outline" style={this.isOpened("subjects") && !this.isAdminOpened() ? { color: "#5E81F4" } : null}></ion-icon>
                         <div className="title" style={this.isOpened("subjects") && !this.isAdminOpened() ? { color: "#383838" } : null}>Subjects</div>
                         <div style={{ flex: 1 }} />
@@ -73,7 +74,7 @@ class Menu extends React.Component {
                     </Link>
 
                     {this.state.role === "student" ? (
-                        <Link className="item" to="/grades">
+                        <Link className="item" to="/grades" onClick={() => window.innerWidth < 1000 ? hideMenu() : null}>
                             <ion-icon name="list-outline" style={this.isOpened("grades") && !this.isAdminOpened() ? { color: "#5E81F4" } : null}></ion-icon>
                             <div className="title" style={this.isOpened("grades") && !this.isAdminOpened() ? { color: "#383838" } : null}>Grades</div>
                             <div style={{ flex: 1 }} />
@@ -81,17 +82,10 @@ class Menu extends React.Component {
                         </Link>
                     ) : null}
 
-                    <Link className="item" to="/profile">
-                        <ion-icon name="person-outline" style={this.isOpened("profile") && !this.isAdminOpened() ? { color: "#5E81F4" } : null}></ion-icon>
-                        <div className="title" style={this.isOpened("profile") && !this.isAdminOpened() ? { color: "#383838" } : null}>Profile</div>
-                        <div style={{ flex: 1 }} />
-                        <div className="selector" style={this.isOpened("profile") && !this.isAdminOpened() ? { opacity: 1 } : { opacity: 0 }} />
-                    </Link>
-
                     <div style={{ flex: 1 }} />
 
                     {this.state.isAdmin ? (
-                        <Link className="item" to="/admin">
+                        <Link className="item" to="/admin" onClick={() => window.innerWidth < 1000 ? hideMenu() : null}>
                             <ion-icon name="cube-outline" style={this.isOpened("admin") ? { color: "#5E81F4" } : null}></ion-icon>
                             <div className="title" style={this.isOpened("admin") ? { color: "#383838" } : null}>Admin</div>
                             <div style={{ flex: 1 }} />

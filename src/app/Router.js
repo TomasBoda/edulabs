@@ -2,6 +2,10 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 import Menu from "./components/Menu";
+import Header from "./components/Header";
+
+import NotFound from "./screens/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 import Admin from "./screens/Admin";
 import AdminClassrooms from "./screens/admin/AdminClassrooms";
@@ -33,6 +37,9 @@ export default function Router() {
 
                     <div className="container">
                         <Menu />
+                        <Header />
+
+                        <ScrollToTop />
                         
                         <Route exact path="/dashboard"><Dashboard /></Route>
 
@@ -52,6 +59,8 @@ export default function Router() {
                         <Route exact path="/admin/teachers"><AdminTeachers /></Route>
 
                         <Route exact path="/admin/subjects"><AdminSubjects /></Route>
+
+                        <Route path="/edulabs"><NotFound /></Route>
                     </div>
                 </Switch>
             </div>

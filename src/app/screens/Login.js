@@ -56,7 +56,7 @@ class Login extends React.Component {
 
     render() {
         return(
-            <div id="login">
+            <div className="screen" id="login">
                 <div className="icon-panel">
                     <img className="icon" src={IconImage} />
                 </div>

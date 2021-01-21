@@ -49,24 +49,28 @@ class Admin extends React.Component {
 
                 <div className="body-panel">
                     <Box
+                        withAnimation
                         item={{ name: "Students" }}
                         icon={StudentsIcon}
                         onClick={() => this.props.history.push("/admin/students")}
                     />
 
                     <Box
+                        withAnimation
                         item={{ name: "Teachers" }}
                         icon={ClassroomIcon}
                         onClick={() => this.props.history.push("/admin/teachers")}
                     />
 
                     <Box
+                        withAnimation
                         item={{ name: "Classrooms" }}
                         icon={ClassIcon}
                         onClick={() => this.props.history.push("/admin/classrooms")}
                     />
 
                     <Box
+                        withAnimation
                         item={{ name: "Subjects" }}
                         icon={Icon}
                         onClick={() => this.props.history.push("/admin/subjects")}

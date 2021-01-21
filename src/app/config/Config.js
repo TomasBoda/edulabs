@@ -1,6 +1,7 @@
 import React from "react";
 
-export const API_URL = "http://localhost:8080";
+export const API_URL = "http://141.136.35.33:8000";
+export const API = "http://localhost:8000";
 
 export function removeStorageItem(name) {
     localStorage.removeItem(name);

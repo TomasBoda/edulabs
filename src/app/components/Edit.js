@@ -41,6 +41,15 @@ export default class Edit extends React.Component {
 
         const token = getStorageItem("token");
 
+        if (this.state.firstname.trim() === "" ||
+            this.state.lastname.trim() === "" ||
+            this.state.email.trim() === "" ||
+            this.state.password.trim() === "" ||
+            this.state.admin.trim() === "") {
+            this.setState({ loading: false });
+            return;
+        }
+
         var data = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -55,11 +64,7 @@ export default class Edit extends React.Component {
         const call = await Api.createUser(data, token);
 
         if (call.message === "User registered successfully") {
-            this.setState({
-                loading: false,
-                log: true,
-                message: call.message
-            });
+            this.props.finish();
         } else {
             this.setState({
                 loading: false,
@@ -74,16 +79,24 @@ export default class Edit extends React.Component {
 
         const token = getStorageItem("token");
 
+        if (this.state.classroomName.trim() === "") {
+            this.setState({ loading: false });
+            return;
+        }
+
         const call = await Api.createClassroom({
             name: this.state.classroomName
         }, token);
 
-
-        this.setState({
-            loading: false,
-            log: true,
-            message: call.message
-        });
+        if (call.message === "Classroom created successfully") {
+            this.props.finish();
+        } else {
+            this.setState({
+                loading: false,
+                log: true,
+                message: call.message
+            });
+        }
     }
 
     async createSubject() {
@@ -91,16 +104,17 @@ export default class Edit extends React.Component {
 
         const token = getStorageItem("token");
 
+        if (this.state.subjectName.trim() === "") {
+            this.setState({ loading: false });
+            return;
+        }
+
         const call = await Api.createSubject({
             name: this.state.subjectName
         }, token);
 
         if (call.message === "Subject created successfully") {
-            this.setState({
-                loading: false,
-                log: true,
-                message: call.message
-            });
+            this.props.finish();
         } else {
             this.setState({
                 loading: false,
@@ -115,6 +129,11 @@ export default class Edit extends React.Component {
 
         const token = getStorageItem("token");
 
+        if (this.state.gradeValue.trim() === "" || this.state.gradeDescription.trim() === "") {
+            this.setState({ loading: false });
+            return;
+        }
+
         const call = await Api.createGrade({
             value: this.state.gradeValue,
             description: this.state.gradeDescription,
@@ -122,11 +141,15 @@ export default class Edit extends React.Component {
             subjectId: this.props.subjectId
         }, token);
 
-        this.setState({
-            loading: false,
-            log: true,
-            message: call.message
-        });
+        if (call.message === "Grade created successfully") {
+            this.props.finish();
+        } else {
+            this.setState({
+                loading: false,
+                log: true,
+                message: call.message
+            });
+        }
     }
 
     componentDidMount() {
@@ -137,7 +160,7 @@ export default class Edit extends React.Component {
         const type = this.props.type;
 
         if (this.state.loading) {
-            return <div className="edit-screen"><div className="edit"><Loading /></div></div>;
+            return <div className="edit-screen"><div className="edit" style={{ width: "auto" }}><Loading /></div></div>;
         }
 
         if (this.state.log) {
@@ -153,8 +176,8 @@ export default class Edit extends React.Component {
 
         if (type === "add-user") {
             return(
-                <div className="edit-screen" id="add-user">
-                    <div className="edit">
+                <div className="edit-screen animate__animated animate__fadeIn" id="add-user">
+                    <div className="edit animate__animated animate__backInDown">
                         <div className="title">Add {this.props.role}<ion-icon name="close" onClick={() => this.props.close()}></ion-icon></div>
 
                         <input className="input" type="text" value={this.state.firstname} onChange={(event) => this.setState({ firstname: event.target.value })} placeholder="First name" />
@@ -182,8 +205,8 @@ export default class Edit extends React.Component {
             )
         } else if (type === "add-classroom") {
             return(
-                <div className="edit-screen" id="add-classroom">
-                    <div className="edit">
+                <div className="edit-screen animate__animated animate__fadeIn" id="add-classroom">
+                    <div className="edit animate__animated animate__backInDown">
                         <div className="title">Create classroom<ion-icon name="close" onClick={() => this.props.close()}></ion-icon></div>
 
                         <input className="input" type="text" value={this.state.classroomName} onChange={(event) => this.setState({ classroomName: event.target.value })} placeholder="Classroom name" />
@@ -197,8 +220,8 @@ export default class Edit extends React.Component {
             )
         } else if (type === "add-subject") {
             return(
-                <div className="edit-screen" id="add-subject">
-                    <div className="edit">
+                <div className="edit-screen animate__animated animate__fadeIn" id="add-subject">
+                    <div className="edit animate__animated animate__backInDown">
                         <div className="title">Create subject<ion-icon name="close" onClick={() => this.props.close()}></ion-icon></div>
 
                         <input className="input" type="text" value={this.state.subjectName} onChange={(event) => this.setState({ subjectName: event.target.value })} placeholder="Subject name" />
@@ -212,8 +235,8 @@ export default class Edit extends React.Component {
             )
         } else if (type === "add-grade") {
             return(
-                <div className="edit-screen" id="add-grade">
-                    <div className="edit">
+                <div className="edit-screen animate__animated animate__fadeIn" id="add-grade">
+                    <div className="edit animate__animated animate__backInDown">
                         <div className="title">Create grade<ion-icon name="close" onClick={() => this.props.close()}></ion-icon></div>
 
                         <input className="input" type="text" value={this.state.gradeValue} onChange={(event) => this.setState({ gradeValue: event.target.value })} placeholder="Grade value in percentage" />

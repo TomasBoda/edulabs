@@ -60,7 +60,7 @@ class AdminSubjects extends React.Component {
     render() {
         return(
             <div className="screen" id="admin">
-                <Heading title="Subjects" />
+                <Heading title="Subjects" withArrow />
 
                 <Panel
                     title="Administrate your subjects"
@@ -71,25 +71,29 @@ class AdminSubjects extends React.Component {
                 {this.state.edit ? (
                     <Edit
                         type={this.state.type}
-                        close={() => this.setState({ edit: false }, () => this.loadData())}
+                        close={() => this.setState({ edit: false })}
+                        finish={() => this.setState({ edit: false }, () => this.loadData())}
                     />
                 ) : null}
 
-                <div className="body-panel">
-                    <Box
-                        item={{ name: "Add subject" }}
-                        icon={AddIcon}
-                        onClick={() => this.setState({ edit: true })}
-                    />
-
-                    {this.state.subjects.map((subject) => (
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
                         <Box
-                            item={subject}
-                            onClick={() => {}}
-                            icon={Icon}
+                            item={{ name: "Add subject" }}
+                            icon={AddIcon}
+                            onClick={() => this.setState({ edit: true })}
                         />
-                    ))}
-                </div>
+
+                        {this.state.subjects.map((subject, index) => (
+                            <Box
+                                withAnimation
+                                item={subject}
+                                onClick={() => {}}
+                                icon={Icon}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         )
     }

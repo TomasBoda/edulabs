@@ -60,7 +60,7 @@ class AdminClassrooms extends React.Component {
     render() {
         return(
             <div className="screen" id="admin">
-                <Heading title="Classrooms" />
+                <Heading title="Classrooms" withArrow />
 
                 <Panel
                     title="Administrate your classrooms"
@@ -71,25 +71,29 @@ class AdminClassrooms extends React.Component {
                 {this.state.edit ? (
                     <Edit
                         type={this.state.type}
-                        close={() => this.setState({ edit: false }, () => this.loadData())}
+                        close={() => this.setState({ edit: false })}
+                        finish={() => this.setState({ edit: false }, () => this.loadData())}
                     />
                 ) : null}
 
-                <div className="body-panel">
-                    <Box
-                        item={{ name: "Add classroom" }}
-                        icon={AddIcon}
-                        onClick={() => this.setState({ edit: true })}
-                    />
-
-                    {this.state.classrooms.map((classroom) => (
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
                         <Box
-                            item={classroom}
-                            onClick={() => this.props.history.push({ pathname: "/admin/classrooms/" + classroom.id })}
-                            icon={ClassIcon}
+                            item={{ name: "Add classroom" }}
+                            icon={AddIcon}
+                            onClick={() => this.setState({ edit: true })}
                         />
-                    ))}
-                </div>
+
+                        {this.state.classrooms.map((classroom, index) => (
+                            <Box
+                                withAnimation
+                                item={classroom}
+                                onClick={() => this.props.history.push({ pathname: "/admin/classrooms/" + classroom.id })}
+                                icon={ClassIcon}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         )
     }

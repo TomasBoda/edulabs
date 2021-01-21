@@ -37,6 +37,10 @@ class AdminUser extends React.Component {
 
         teacherData: [],
 
+        popup: false,
+        message: "Please fill in all blank spaces",
+        popupLoading: false,
+
         loading: true,
     }
 
@@ -119,7 +123,10 @@ class AdminUser extends React.Component {
             });
 
             if (call.user.role === "student") {
-                this.setState({ selectedStudentClassroom: call.user.classroom });
+                this.setState({
+                    selectedStudentClassroom: call.user.classroom,
+                    loading: false
+                });
             }
         }
     }
@@ -240,7 +247,11 @@ class AdminUser extends React.Component {
     ///////////////////////////////////
 
     async componentDidMount() {
+        this.setState({ loading: true });
+
         await this.loadUserData();
+
+        this.setState({ loading: true });
 
         if (this.state.role === "student") {
             await this.loadStudentClassrooms();
@@ -248,12 +259,58 @@ class AdminUser extends React.Component {
         } else if (this.state.role === "teacher") {
             await this.loadTeacherSubjectsAndClassrooms();
         }
+
+        this.setState({ loading: false });
+    }
+
+    async updateUser() {
+        this.setState({ popup: true, popupLoading: true });
+
+        const token = getStorageItem("token");
+
+        const id = this.props.match.params.id;
+        const { firstname, lastname, email, admin } = this.state;
+
+        if (firstname.trim() === "" || lastname.trim() === "" || email.trim() === "") {
+            this.setState({
+                popupLoading: false,
+                message: "Please fill in all blank spaces"
+            });
+
+            return;
+        }
+
+        const call = await Api.updateUserData(id, {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            admin: admin
+        }, token);
+
+        console.log(call);
+
+        if (call.message === "User data updated successfully") {
+            this.setState({
+                popupLoading: false,
+                message: "User updated successfully"
+            });
+        }
     }
 
     render() {
+        if (this.state.loading) {
+            return(
+                <div className="screen" id="admin-user">
+                    <Heading title="User" />
+
+                    <div className="fill-space"><Loading /></div>
+                </div>
+            )
+        }
+
         return(
             <div className="screen" id="admin-user">
-                <Heading title="User" />
+                <Heading title="User" withArrow />
 
                 <div className="body-panel">
                     <div className="panel top-panel">
@@ -266,7 +323,7 @@ class AdminUser extends React.Component {
                     </div>
 
                     <div className="bottom-panel">
-                        <div className="panel left-panel">
+                        <div className="panel left-panel animate__animated animate__fadeInUp">
                             <div className="title-small">Personal info</div>
 
                             <div style={{ height: 15 }} />
@@ -274,20 +331,6 @@ class AdminUser extends React.Component {
                             <input className="input" type="text" placeholder="First name" value={this.state.firstname} onChange={(event) => this.setState({ firstname: event.target.value })} />
                             <input className="input" type="text" placeholder="Last name" value={this.state.lastname} onChange={(event) => this.setState({ lastname: event.target.value })} />
                             <input className="input" type="text" placeholder="E-mail" value={this.state.email} onChange={(event) => this.setState({ email: event.target.value })} />
-
-                            {/*
-                            <div style={{ height: 20 }} />
-
-                            <div className="title-small">Role</div>
-
-                            <div style={{ height: 15 }} />
-
-                            <div className="button-panel">
-                                <div className={"button" + (this.state.role === "student" ? "" : "-disabled")} onClick={() => this.setState({ role: "student" })}>Student</div>
-                                <div style={{ width: 10 }} />
-                                <div className={"button" + (this.state.role === "teacher" ? "" : "-disabled")} onClick={() => this.setState({ role: "teacher" })}>Teacher</div>
-                            </div>
-                            */}
 
                             <div style={{ height: 20 }} />
 
@@ -300,10 +343,14 @@ class AdminUser extends React.Component {
                                 <div style={{ width: 10 }} />
                                 <div className={"button" + (this.state.admin === 0 ? "" : "-disabled")} onClick={() => this.setState({ admin: 0 })}>Regular</div>
                             </div>
+
+                            <div style={{ flex: 1 }} />
+
+                            <div className="button" onClick={() => this.updateUser()} style={{ marginTop: 30 }}>Save changes</div>
                         </div>
 
                         {this.state.role === "student" ? (
-                        <div className="right-panel" id="student-panel">
+                        <div className="right-panel animate__animated animate__fadeInUp animate__delay-1s" id="student-panel">
                             <div className="panel classroom-panel">
                                 <div className="title-small">Classroom</div>
 
@@ -329,7 +376,7 @@ class AdminUser extends React.Component {
                             </div>
                         </div>
                         ) : (
-                        <div className="right-panel" id="teacher-panel">
+                        <div className="right-panel animate__animated animate__fadeInUp animate__delay-1s" id="teacher-panel">
                             <div className="panel classroom-panel">
                                 <div className="title-small">Classrooms</div>
 
@@ -361,9 +408,9 @@ class AdminUser extends React.Component {
 
                 {this.state.popup ? (
                     <Popup
-                        loading={this.state.loading}
+                        loading={this.state.popupLoading}
                         title={this.state.message}
-                        close={() => this.setState({ popup: false }, () => this.loadData())}
+                        close={() => this.setState({ popup: false }, () => this.loadUserData())}
                     />
                 ) : null}
             </div>

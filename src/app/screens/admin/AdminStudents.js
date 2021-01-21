@@ -9,6 +9,7 @@ import Panel from "../../components/Panel";
 import Heading from "../../components/Heading";
 import Box from "../../components/Box";
 import Edit from "../../components/Edit";
+import Option from "../../components/Option";
 
 import "../../styles/admin.css";
 
@@ -21,6 +22,10 @@ class AdminStudents extends React.Component {
     state = {
         students: [],
 
+        deletedUser: "",
+        option: false,
+        optionLoading: false,
+
         loading: true
     }
 
@@ -28,6 +33,8 @@ class AdminStudents extends React.Component {
         super();
 
         this.loadData = this.loadData.bind(this);
+        this.showOption = this.showOption.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     async loadData() {
@@ -50,6 +57,26 @@ class AdminStudents extends React.Component {
         }
     }
 
+    showOption(event, id) {
+        event.stopPropagation();
+
+        this.setState({
+            deletedUser: id,
+            option: true
+        });
+    }
+
+    async deleteUser(id) {
+        this.setState({ optionLoading: true });
+
+        const token = getStorageItem("token");
+        const call = await Api.deleteUser(id, token);
+
+        if (call.message === "User deleted successfully") {
+            this.setState({ option: false }, () => this.loadData());
+        }
+    }
+
     componentDidMount() {
         this.loadData();
     }
@@ -57,7 +84,7 @@ class AdminStudents extends React.Component {
     render() {
         return(
             <div className="screen" id="admin">
-                <Heading title="Students" />
+                <Heading title="Students" withArrow />
 
                 <Panel
                     title="Administrate your students"
@@ -65,15 +92,29 @@ class AdminStudents extends React.Component {
                     image={Icon}
                 />
 
-                <div className="body-panel">
-                    {this.state.students.map((student) => (
-                        <Box
-                            item={{ name: student.firstname + " " + student.lastname }}
-                            onClick={() => this.props.history.push("/admin/users/" + student.id)}
-                            icon={ProfileIcon}
-                        />
-                    ))}
-                </div>
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
+                        {this.state.students.map((student, index) => (
+                            <Box
+                                withAnimation
+                                withRemove
+                                onRemoveClick={(event) => this.showOption(event, student.id)}
+                                item={{ name: student.firstname + " " + student.lastname }}
+                                onClick={() => this.props.history.push("/admin/users/" + student.id)}
+                                icon={ProfileIcon}
+                            />
+                        ))}
+                    </div>
+                )}
+
+                {this.state.option ? (
+                    <Option
+                        title="Delete student?"
+                        loading={this.state.optionLoading}
+                        onClick={() => this.deleteUser(this.state.deletedUser)}
+                        close={() => this.setState({ option: false })}
+                    />
+                ) : null}
             </div>
         )
     }

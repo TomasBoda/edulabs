@@ -10,6 +10,26 @@
     padding: 20px 0px;
 
     background-color: white;
+
+    z-index: 10;
+}
+
+@media (max-width: 1000px) {
+    #menu {
+        position: fixed;
+        left: -100vw;
+        top: 0;
+
+        width: 100vw;
+        height: 100%;
+        height: -moz-available;
+        height: -webkit-fill-available;
+        height: fill-available;
+
+        padding: 50px 0px 20px 0px;
+
+        transition: all 400ms;
+    }
 }
 
 #menu .border {
@@ -31,6 +51,12 @@
     color: #383838;
     font-size: 25px;
     font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+    #menu .logo {
+        padding-left: 20px;
+    }
 }
 
 #menu .navigation {
@@ -58,6 +84,13 @@
     cursor: pointer;
 }
 
+@media (max-width: 1000px) {
+    #menu .navigation .item {
+        width: 100%;
+        padding-left: 20px;
+    }
+}
+
 #menu .navigation .item:hover {
     background-color: rgba(240, 240, 240);
 }
@@ -75,6 +108,24 @@
     color: rgba(0, 0, 0, 0.35);
     font-size: 15px;
     font-weight: 700;
+}
+
+
+@media (max-width: 1000px) {
+    #menu .navigation .item ion-icon {
+        width: 30px;
+        height: 30px;
+    
+        margin-right: 20px;
+    
+        color: rgba(0, 0, 0, 0.35);
+    }
+    
+    #menu .navigation .item .title {
+        color: rgba(0, 0, 0, 0.35);
+        font-size: 16px;
+        font-weight: 700;
+    }
 }
 
 #menu .navigation .item .selector {

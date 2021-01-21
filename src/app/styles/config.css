@@ -12,22 +12,77 @@
     font-family: Arial, Helvetica, sans-serif
 }
 
+html {
+    background-color: #F5F5FB;
+}
+
+input, textarea, button, select, a, div {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translate3d(50px, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 75px, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: none;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+  
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }
 
+:root {
+    --animate-duration: 700ms;
+    --animate-delay: 0.2s;
+}
+
 .container {
     width: 100vw;
-    height: 100vh;
 
     display: flex;
     flex-direction: row;
 }
 
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
 .screen {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -35,6 +90,33 @@
     padding: 50px;
 
     background-color: #F5F5FB;
+}
+
+@media (max-width: 1000px) {
+    .screen {
+        height: auto;
+        min-height: 100vh;
+
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+}
+
+@media (max-width: 800px) {
+    .screen {
+        padding: 75px 20px 50px 20px;
+    }
+}
+
+.fill-space {
+    flex: 1;
+
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .panel {

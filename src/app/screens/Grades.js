@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import { setStorageItem, getStorageItem, removeStorageItem, isLogged } from "../config/Config";
-import { Grade } from "../screens/Subject";
 
 import Api from "../config/Api";
 import Loading from "../components/Loading";
@@ -68,11 +67,7 @@ class Grades extends React.Component {
     }
 
     componentDidMount() {
-        if (isLogged()) {
-            this.loadSubjects();
-        } else {
-            this.props.history.push("/");
-        }
+        this.loadSubjects();
     }
 
     render() {
@@ -84,17 +79,17 @@ class Grades extends React.Component {
 
                 <Panel
                     title="Analyse and improve your results"
-                    text="Welcome back to EduLabs. You have new assignments, homeworks and grades. Look them up in your notification panel."
+                    text="Your average results by subjects, in one place. Analyse your results, consult them with your teachers and improve your skills."
                     image={Icon}
                 />
 
-                <div className="body-panel">
-                    <div className="panel">
-                        <div className="title-small">Average grade by subject</div>
-
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
                         <div className="grades">
                             {this.state.subjects.map((subject, index) => (
                                 <Grade
+                                    withAnimation
+                                    delay={index * 50}
                                     title={subject.name}
                                     value={subject.average}
                                     style={index === this.state.subjects.length - 1 ? { border: "none" } : null}
@@ -102,10 +97,39 @@ class Grades extends React.Component {
                             ))}
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         )
     }
+}
+
+export function Grade(props) {
+    const title = props.title;
+    const value = props.value;
+    const delay = props.delay;
+
+    const [render, setRender] = useState(false);
+
+    setTimeout(() => {
+        setRender(true)
+    }, delay || 0);
+
+    function getColor(value) {
+        return value >= 50 ? "#5E81F4" : "#FF6A77";
+    }
+
+    if (!render) {
+        return null;
+    }
+
+    return(
+        <div className={"grade" + (props.withAnimation ? " animate__animated animate__fadeInUp" : "")} style={props.style}>
+            <div className="description">{title}</div>
+            <div style={{ flex: 1 }} />
+            {value ? <div className="bar"><div className="filled" style={{ width: (value + "%").toString(), backgroundColor: getColor(value) }} /></div> : null}
+            {value ? <div className="value" style={{ color: getColor(value) }}>{value.toFixed(2)}%</div> : <div className="message" style={{ width: 100, textAlign: "right" }}>No grades</div>}
+        </div>
+    )
 }
 
 export default withRouter(Grades);

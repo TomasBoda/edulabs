@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 
 import { setStorageItem, getStorageItem, removeStorageItem, isLogged } from "../config/Config";
+import { Grade } from "../screens/Grades";
 
 import Api from "../config/Api";
 import Loading from "../components/Loading";
@@ -64,25 +65,25 @@ class Subject extends React.Component {
 
         return(
             <div className="screen" id="subject">
-                <Heading title="Subjects" />
+                <Heading title={subject.name ? subject.name : "Loading"} withArrow />
 
                 <Panel
-                    title={subject.name}
+                    title={subject.name ? subject.name : "Loading"}
                     text="Welcome back to EduLabs. You have new assignments, homeworks and grades. Look them up in your notification panel."
                     image={Icon}
                 />
 
                 {this.state.loading ? (
-                    <div className="loading-container">
+                    <div className="fill-space">
                         <Loading />
                     </div>
                 ) : (
                     <div className="body-panel">
-                        <div className="panel panel-1">
+                        <div className="panel overview-panel animate__animated animate__fadeInUp">
                             <div className="title-small">Overview</div>
                         </div>
 
-                        <div className="panel grade-panel">
+                        <div className="panel grade-panel animate__animated animate__fadeInUp animate__delay-1s">
                             <div className="title-small">Grades</div>
 
                             <div className="grades">
@@ -101,24 +102,6 @@ class Subject extends React.Component {
             </div>
         )
     }
-}
-
-export function Grade(props) {
-    const title = props.title;
-    const value = props.value;
-
-    function getColor(value) {
-        return value >= 50 ? "#5E81F4" : "#FF6A77";
-    }
-
-    return(
-        <div className="grade" style={props.style}>
-            <div className="description">{title}</div>
-            <div style={{ flex: 1 }} />
-            {value ? <div className="bar"><div className="filled" style={{ width: (value + "%").toString(), backgroundColor: getColor(value) }} /></div> : null}
-            {value ? <div className="value" style={{ color: getColor(value) }}>{value}%</div> : <div className="value" style={{ width: 200 }}>No grades</div>}
-        </div>
-    )
 }
 
 export default withRouter(Subject);

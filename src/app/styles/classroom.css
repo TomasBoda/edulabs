@@ -9,7 +9,7 @@
 
 #classroom .body-panel .student {
     display: grid;
-    grid-template-columns: auto 200px 1fr auto auto;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
 
     padding: 10px;
@@ -18,6 +18,14 @@
     border-radius: 5px;
 
     background-color: white;
+}
+
+#classroom .body-panel .student .info-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-right: 20px;
 }
 
 #classroom .body-panel .student .image {
@@ -32,8 +40,6 @@
     color: #383838;
     font-size: 16px;
     font-weight: 700;
-
-    margin-right: 20px;
 }
 
 #classroom .body-panel .student .grades {
@@ -41,16 +47,10 @@
     flex-direction: row;
     align-items: center;
 
-    overflow: auto;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    overflow-x: auto;
 
     padding: 0px;
     margin: 0px;
-
-    height: 100%;
 }
 
 #classroom .body-panel .student .grades .grade {
@@ -59,8 +59,15 @@
     font-weight: 700;
 
     padding: 0px 5px;
+    margin: 0px;
+}
 
-    border: none;
+#classroom .body-panel .student .add-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-left: 40px;
 }
 
 #classroom .body-panel .student .average {
@@ -69,9 +76,80 @@
     font-weight: 700;
 
     margin-right: 20px;
-    margin-left: 50px;
 }
 
-#classroom .body-panel .student .button {
+@media (max-width: 800px) {
+    #classroom .body-panel .student {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #classroom .body-panel .student .info-panel {
+        align-self: flex-start;
+
+        margin-right: 0px;
+    }
     
+    #classroom .body-panel .student .image {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    
+        margin-right: 10px;
+    }
+    
+    #classroom .body-panel .student .name {
+        color: #383838;
+        font-size: 16px;
+        font-weight: 700;
+    
+        margin-right: 20px;
+    }
+    
+    #classroom .body-panel .student .grades {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        width: 100%;
+    
+        overflow-x: auto;
+    
+        padding: 0px;
+        margin: 20px 0px;
+    }
+    
+    #classroom .body-panel .student .grades .grade {
+        color: #383838;
+        font-size: 16px;
+        font-weight: 700;
+    
+        padding: 0px 5px;
+        margin: 0px;
+    }
+
+    #classroom .body-panel .student .grades .message {
+        width: 100%;
+        text-align: center;
+    }
+
+    #classroom .body-panel .student .add-panel {
+        align-self: flex-end;
+
+        margin-left: 0px;;
+    }
+    
+    #classroom .body-panel .student .average {
+        color: #383838;
+        font-size: 16px;
+        font-weight: 700;
+    
+        margin-right: 20px;
+        margin-left: 50px;
+    }
+
+    #classroom .body-panel .student .button {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

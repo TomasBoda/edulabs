@@ -1,12 +1,43 @@
-.top-heading .title-large {
+.top-heading {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+
+    width: 100%;
 }
 
-.top-heading .title-large .date {
+.top-heading .title-large {
+    padding: 10px 0px;
+}
+
+.top-heading ion-icon {
+    width: 19px;
+    height: 19px;
+
+    color: #383838;
+
+    padding: 5px;
+    margin-right: 15px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: all 200ms;
+}
+
+.top-heading ion-icon:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.top-heading .date {
     color: rgb(170, 170, 170);
     font-size: 14px;
     font-weight: 700;
+}
+
+@media (max-width: 800px) {
+    .top-heading .date {
+        display: none;
+    }
 }

@@ -14,7 +14,7 @@ export default function Panel(props) {
                 </div>
             </div>
 
-            <img className="image" src={/*props.image*/ PanelIcon} />
+            <img className="image" src={PanelIcon} />
         </div>
     )
 }
