@@ -8,7 +8,6 @@
 
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
 
     flex: 1;
 
@@ -29,7 +28,6 @@
 
 #subject .body-panel .overview-panel {
     flex: 1;
-    height: 100%;
 
     margin-right: 20px;
 }
@@ -37,6 +35,7 @@
 #subject .body-panel .grade-panel {
     width: 400px;
     padding-bottom: 10px;
+    height: 300px;
 }
 
 @media (max-width: 1000px) {

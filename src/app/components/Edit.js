@@ -44,8 +44,7 @@ export default class Edit extends React.Component {
         if (this.state.firstname.trim() === "" ||
             this.state.lastname.trim() === "" ||
             this.state.email.trim() === "" ||
-            this.state.password.trim() === "" ||
-            this.state.admin.trim() === "") {
+            this.state.password.trim() === "") {
             this.setState({ loading: false });
             return;
         }

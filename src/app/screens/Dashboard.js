@@ -7,6 +7,7 @@ import Api from "../config/Api";
 import Loading from "../components/Loading";
 import Panel from "../components/Panel";
 import Heading from "../components/Heading";
+import { Grade } from "./Grades";
 
 import "../styles/dashboard.css";
 
@@ -16,13 +17,17 @@ import PanelIcon from "../assets/subjects-icon.svg";
 class Dashboard extends React.Component {
 
     state = {
-        user: {}
+        user: {},
+        grades: [],
+
+        loading: true
     }
 
     constructor() {
         super();
 
         this.getUser = this.getUser.bind(this);
+        this.loadGrades = this.loadGrades.bind(this);
     }
 
     async getUser() {
@@ -30,26 +35,45 @@ class Dashboard extends React.Component {
 
         const user = await Api.getUser(token);
 
-        console.log(user);
-
         if (user.user) {
             this.setState({ user: user.user });
-            console.log(user);
+        }
+    }
+
+    async loadGrades() {
+        this.setState({ loading: true });
+
+        const token = getStorageItem("token");
+
+        const call = await Api.getUserGrades(token);
+
+        if (call.grades) {
+            const grades = [];
+
+            for (let i = 0; i < call.grades.length; i++) {
+                const subject = await Api.getSubject(call.grades[i].subject_id, token);
+
+                if (subject.subject) {
+                    grades.push({
+                        ...call.grades[i],
+                        subject: subject.subject
+                    });
+                }
+            }
+
+            this.setState({
+                grades: grades,
+                loading: false
+            })
         }
     }
 
     componentDidMount() {
-        if (isLogged()) {
-            this.getUser();
-        } else {
-            this.props.history.push("/");
-        }
+        this.getUser();
+        this.loadGrades();
     }
 
     render() {
-        var rawDate = new Date().toString().split(" ");
-        var date = rawDate[0] + " " +  rawDate[2] + ", " + rawDate[1] + " " + rawDate[3];
-
         const user = this.state.user;
 
         return(
@@ -62,15 +86,29 @@ class Dashboard extends React.Component {
                     image={PanelIcon}
                 />
 
-                <div className="body-panel">
-                    <div className="average panel animate__animated animate__fadeInUp">
-                        <div className="title-small">Results</div>
-                    </div>
+                {this.state.loading ? <div className="fill-space"><Loading /></div> : (
+                    <div className="body-panel">
+                        <div className="grade-panel panel animate__animated animate__fadeInUp">
+                            <div className="title-small">Results</div>
 
-                    <div className="homework panel animate__animated animate__fadeInUp animate__delay-1s">
-                        <div className="title-small">Homework</div>
+                            <div className="grades" style={this.state.grades.length === 0 ? { height: 250 } : null}>
+                                {this.state.grades.length > 0 ? (
+                                    this.state.grades.map((grade, index) => (
+                                        <Grade
+                                            title={grade.description}
+                                            subjectName={grade.subject.name}
+                                            value={grade.value}
+                                            style={index === this.state.grades.length - 1 ? { border: "none" } : null}
+                                        />
+                                    ))) : <div className="message">No grades</div>}
+                            </div>
+                        </div>
+
+                        <div className="panel homework animate__animated animate__fadeInUp animate__delay-1s">
+                            <div className="title-small">Homework</div>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         )
     }

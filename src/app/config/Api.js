@@ -230,6 +230,27 @@ export default class Api extends React.Component {
             });
     }
 
+    static async getUserGrades(token) {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("auth-token", token);
+            
+        var requestOptions = {
+            method: "GET",
+            headers: headers,
+            redirect: "follow"
+        };
+        
+        return fetch(API_URL + "/api/user/grades", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                return result
+            })
+            .catch(error => {
+                return error
+            });
+    }
+
     // ADMIN API CALLS
 
     static async updateUserData(id, data, token) {

@@ -108,6 +108,8 @@ export function Grade(props) {
     const value = props.value;
     const delay = props.delay;
 
+    const subjectName = props.subjectName;
+
     const [render, setRender] = useState(false);
 
     setTimeout(() => {
@@ -122,8 +124,11 @@ export function Grade(props) {
         return null;
     }
 
+    const innerWidth = window.innerWidth;
+
     return(
         <div className={"grade" + (props.withAnimation ? " animate__animated animate__fadeInUp" : "")} style={props.style}>
+            {subjectName && innerWidth > 600 ? <div className="description" style={{ paddingRight: 10, marginRight: 10, borderRight: "2px solid rgba(0, 0, 0, 0.1)", fontWeight: 700 }}>{subjectName}</div> : null}
             <div className="description">{title}</div>
             <div style={{ flex: 1 }} />
             {value ? <div className="bar"><div className="filled" style={{ width: (value + "%").toString(), backgroundColor: getColor(value) }} /></div> : null}

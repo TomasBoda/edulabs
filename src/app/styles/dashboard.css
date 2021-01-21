@@ -20,10 +20,95 @@
     }
 }
 
-#dashboard .body-panel .average {
-    width: 370px;
+#dashboard .body-panel .grade-panel {
+    width: 550px;
+    height: auto;
 
     margin-right: 20px;
+    padding-bottom: 10px;
+
+    align-self: flex-start;
+}
+
+@media (max-width: 1200px) {
+    #dashboard .body-panel .grade-panel {
+        width: 480px;
+    }
+}
+
+@media (max-width: 1000px) {
+    #dashboard .body-panel .grade-panel {
+        width: 100%;
+        height: auto;
+
+        margin-bottom: 20px;
+    }
+}
+
+#dashboard .body-panel .grade-panel .grades {
+    width: 100%;
+    max-height: 300px;
+
+    overflow-y: scroll;
+}
+
+#dashboard .body-panel .grade-panel .grades .grade {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 15px 0px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#dashboard .body-panel .grade-panel .grades .grade .description {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 400;
+
+    width: auto;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+#dashboard .body-panel .grade-panel .grades .grade .bar {
+    width: 100px;
+    height: 6px;
+
+    border-radius: 1000px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-left: 20px;
+
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#dashboard .body-panel .grade-panel .grades .grade .bar .filled {
+    height: 100%;
+
+    border-radius: 1000px;
+
+    background-color: #5E81F4;
+}
+
+#dashboard .body-panel .grade-panel .grades .grade .value {
+    color: #383838;
+    font-size: 16px;
+    font-weight: 700;
+
+    width: 80px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 #dashboard .body-panel .homework {
@@ -35,17 +120,13 @@
         width: 100%;
     }
 
-    #dashboard .body-panel .average {
-        height: 300px;
-
-        margin-bottom: 20px;
-    }
-    
     #dashboard .body-panel .homework {
-        height: 400px;
+        height: 300px;
+        max-height: 300px;
+        min-height: 300px;
     }
 }
 
 #dashboard .body-panel .panel .title-small {
-    
+    margin-bottom: 20px;
 }

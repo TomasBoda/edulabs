@@ -115,6 +115,8 @@ class AdminUser extends React.Component {
 
         if (call.user) {
             this.setState({
+                user: call.user,
+
                 firstname: call.user.firstname,
                 lastname: call.user.lastname,
                 email: call.user.email,
@@ -244,25 +246,6 @@ class AdminUser extends React.Component {
         }
     }
 
-    ///////////////////////////////////
-
-    async componentDidMount() {
-        this.setState({ loading: true });
-
-        await this.loadUserData();
-
-        this.setState({ loading: true });
-
-        if (this.state.role === "student") {
-            await this.loadStudentClassrooms();
-            await this.loadStudentSubjects();
-        } else if (this.state.role === "teacher") {
-            await this.loadTeacherSubjectsAndClassrooms();
-        }
-
-        this.setState({ loading: false });
-    }
-
     async updateUser() {
         this.setState({ popup: true, popupLoading: true });
 
@@ -287,14 +270,29 @@ class AdminUser extends React.Component {
             admin: admin
         }, token);
 
-        console.log(call);
-
         if (call.message === "User data updated successfully") {
             this.setState({
                 popupLoading: false,
                 message: "User updated successfully"
             });
         }
+    }
+
+    async componentDidMount() {
+        this.setState({ loading: true });
+
+        await this.loadUserData();
+
+        this.setState({ loading: true });
+
+        if (this.state.role === "student") {
+            await this.loadStudentClassrooms();
+            await this.loadStudentSubjects();
+        } else if (this.state.role === "teacher") {
+            await this.loadTeacherSubjectsAndClassrooms();
+        }
+
+        this.setState({ loading: false });
     }
 
     render() {
@@ -317,7 +315,7 @@ class AdminUser extends React.Component {
                         <img className="profile-image" src={ProfileIcon} />
 
                         <div className="info-panel">
-                            <div className="name">{this.state.firstname + " " + this.state.lastname}</div>
+                            <div className="name">{this.state.user.firstname + " " + this.state.user.lastname}</div>
                             <div className="role">{this.state.role === "student" ? "Student" : "Teacher"}</div>
                         </div>
                     </div>
@@ -410,7 +408,7 @@ class AdminUser extends React.Component {
                     <Popup
                         loading={this.state.popupLoading}
                         title={this.state.message}
-                        close={() => this.setState({ popup: false }, () => this.loadUserData())}
+                        close={() => this.setState({ popup: false, loading: true }, () => this.loadUserData())}
                     />
                 ) : null}
             </div>

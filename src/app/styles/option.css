@@ -11,6 +11,8 @@
     justify-content: center;
 
     background-color: rgba(0, 0, 0, 0.3);
+
+    z-index: 999;
 }
 
 .option .panel {
@@ -25,10 +27,17 @@
     background-color: white;
 }
 
+@media (max-width: 800px) {
+    .option {
+        width: 90vw;
+    }
+}
+
 .option .panel .title {
     color: #383838;
     font-size: 25px;
     font-weight: 700;
+    text-align: center;
 
     margin-bottom: 30px;
 }
