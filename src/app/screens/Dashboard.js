@@ -87,27 +87,29 @@ class Dashboard extends React.Component {
                 />
 
                 {this.state.loading ? <div className="fill-space"><Loading /></div> : (
-                    <div className="body-panel">
-                        <div className="grade-panel panel animate__animated animate__fadeInUp">
-                            <div className="title-small">Results</div>
+                    (user.role === "student" ? (
+                        <div className="body-panel">
+                            <div className="grade-panel panel animate__animated animate__fadeInUp">
+                                <div className="title-small">Results</div>
 
-                            <div className="grades" style={this.state.grades.length === 0 ? { height: 250 } : null}>
-                                {this.state.grades.length > 0 ? (
-                                    this.state.grades.map((grade, index) => (
-                                        <Grade
-                                            title={grade.description}
-                                            subjectName={grade.subject.name}
-                                            value={grade.value}
-                                            style={index === this.state.grades.length - 1 ? { border: "none" } : null}
-                                        />
-                                    ))) : <div className="message">No grades</div>}
+                                <div className="grades" style={this.state.grades.length === 0 ? { height: 250 } : null}>
+                                    {this.state.grades.length > 0 ? (
+                                        this.state.grades.map((grade, index) => (
+                                            <Grade
+                                                title={grade.description}
+                                                subjectName={grade.subject.name}
+                                                value={grade.value}
+                                                style={index === this.state.grades.length - 1 ? { border: "none" } : null}
+                                            />
+                                        ))) : <div className="message">No grades</div>}
+                                </div>
+                            </div>
+
+                            <div className="panel homework animate__animated animate__fadeInUp animate__delay-1s">
+                                <div className="title-small">Homework</div>
                             </div>
                         </div>
-
-                        <div className="panel homework animate__animated animate__fadeInUp animate__delay-1s">
-                            <div className="title-small">Homework</div>
-                        </div>
-                    </div>
+                    ) : null)
                 )}
             </div>
         )
