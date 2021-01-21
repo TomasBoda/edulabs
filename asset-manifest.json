@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/edulabs/static/css/main.902d141e.chunk.css",
-    "main.js": "/edulabs/static/js/main.9f9d2ffa.chunk.js",
-    "main.js.map": "/edulabs/static/js/main.9f9d2ffa.chunk.js.map",
+    "main.js": "/edulabs/static/js/main.b866b51d.chunk.js",
+    "main.js.map": "/edulabs/static/js/main.b866b51d.chunk.js.map",
     "runtime-main.js": "/edulabs/static/js/runtime-main.fb01219f.js",
     "runtime-main.js.map": "/edulabs/static/js/runtime-main.fb01219f.js.map",
     "static/js/2.709d2df6.chunk.js": "/edulabs/static/js/2.709d2df6.chunk.js",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.fb01219f.js",
     "static/js/2.709d2df6.chunk.js",
     "static/css/main.902d141e.chunk.css",
-    "static/js/main.9f9d2ffa.chunk.js"
+    "static/js/main.b866b51d.chunk.js"
   ]
 }
