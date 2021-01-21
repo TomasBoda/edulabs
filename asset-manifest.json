@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/edulabs/static/css/main.e24264ac.chunk.css",
-    "main.js": "/edulabs/static/js/main.c190940c.chunk.js",
-    "main.js.map": "/edulabs/static/js/main.c190940c.chunk.js.map",
+    "main.css": "/edulabs/static/css/main.8799901b.chunk.css",
+    "main.js": "/edulabs/static/js/main.e6d4820f.chunk.js",
+    "main.js.map": "/edulabs/static/js/main.e6d4820f.chunk.js.map",
     "runtime-main.js": "/edulabs/static/js/runtime-main.fb01219f.js",
     "runtime-main.js.map": "/edulabs/static/js/runtime-main.fb01219f.js.map",
-    "static/js/2.bcf21e5d.chunk.js": "/edulabs/static/js/2.bcf21e5d.chunk.js",
-    "static/js/2.bcf21e5d.chunk.js.map": "/edulabs/static/js/2.bcf21e5d.chunk.js.map",
+    "static/js/2.7c7fe4eb.chunk.js": "/edulabs/static/js/2.7c7fe4eb.chunk.js",
+    "static/js/2.7c7fe4eb.chunk.js.map": "/edulabs/static/js/2.7c7fe4eb.chunk.js.map",
     "index.html": "/edulabs/index.html",
-    "static/css/main.e24264ac.chunk.css.map": "/edulabs/static/css/main.e24264ac.chunk.css.map",
-    "static/js/2.bcf21e5d.chunk.js.LICENSE.txt": "/edulabs/static/js/2.bcf21e5d.chunk.js.LICENSE.txt",
+    "static/css/main.8799901b.chunk.css.map": "/edulabs/static/css/main.8799901b.chunk.css.map",
+    "static/js/2.7c7fe4eb.chunk.js.LICENSE.txt": "/edulabs/static/js/2.7c7fe4eb.chunk.js.LICENSE.txt",
     "static/media/add-icon.05f97dea.svg": "/edulabs/static/media/add-icon.05f97dea.svg",
     "static/media/class-icon.a3e9b4d2.svg": "/edulabs/static/media/class-icon.a3e9b4d2.svg",
     "static/media/classroom-icon.39a5b2ea.svg": "/edulabs/static/media/classroom-icon.39a5b2ea.svg",
@@ -22,8 +22,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.fb01219f.js",
-    "static/js/2.bcf21e5d.chunk.js",
-    "static/css/main.e24264ac.chunk.css",
-    "static/js/main.c190940c.chunk.js"
+    "static/js/2.7c7fe4eb.chunk.js",
+    "static/css/main.8799901b.chunk.css",
+    "static/js/main.e6d4820f.chunk.js"
   ]
 }
