@@ -1,6 +1,8 @@
 # EduLabs
 by Tomáš Boďa
 
+Deployed at http://141.136.35.33/edulabs
+
 ## About
 EduLabs is a school system management web application developed in Node.js. It offers all basic features schools need to manage their employees, students, subjects, classrooms and grades.
 
